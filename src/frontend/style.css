@@ -1,0 +1,710 @@
+/* Reset de Estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-dark: #0f0c1b;
+    --bg-card: rgba(30, 25, 55, 0.45);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --text-primary: #f5f4fa;
+    --text-secondary: #9c97b8;
+    --accent-glow: rgba(138, 43, 226, 0.4);
+
+    --primary: #8a2be2;
+    --primary-light: #a85cf5;
+
+    --success: #00ff87;
+    --success-bg: rgba(0, 255, 135, 0.15);
+
+    --danger: #ff007f;
+    --danger-bg: rgba(255, 0, 127, 0.15);
+
+    --warning: #ffb800;
+    --info: #00e5ff;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Background com Efeito Glowing Gradiente */
+.glow-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background: radial-gradient(circle at 10% 20%, rgba(32, 10, 80, 1) 0%, rgba(10, 5, 25, 1) 90%);
+}
+
+.glow-bg::before,
+.glow-bg::after {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    filter: blur(140px);
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+.glow-bg::before {
+    background: var(--primary);
+    top: -100px;
+    right: -100px;
+    animation: floatBlob 15s infinite alternate ease-in-out;
+}
+
+.glow-bg::after {
+    background: var(--info);
+    bottom: -150px;
+    left: -100px;
+    animation: floatBlob 20s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes floatBlob {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(100px, 50px) scale(1.1);
+    }
+}
+
+/* Utilitários Glassmorphism */
+.glass {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* Layout Geral do App */
+.app-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Barra Lateral (Sidebar) */
+.sidebar {
+    /* width: 380px; */
+    border-right: 1px solid var(--border-color);
+    background: rgba(13, 9, 28, 0.7);
+    backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    gap: 20px;
+    z-index: 10;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.logo-icon {
+    font-size: 28px;
+    background: linear-gradient(135deg, var(--danger), var(--primary-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.logo h1 {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.logo h1 span {
+    color: var(--primary-light);
+}
+
+/* Seletores */
+.candidate-selector-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.candidate-selector-section label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.custom-select {
+    position: relative;
+    width: 100%;
+}
+
+.custom-select select {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(20, 15, 38, 0.9);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    transition: all 0.3s ease;
+}
+
+.custom-select select:focus {
+    border-color: var(--primary-light);
+    box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.custom-select::after {
+    content: '\f107';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    pointer-events: none;
+}
+
+/* Card do Perfil do Candidato Ativo */
+.profile-card {
+    padding: 16px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border: 1px solid rgba(138, 43, 226, 0.2);
+    box-shadow: 0 4px 20px rgba(138, 43, 226, 0.1);
+    animation: fadeIn 0.4s ease-out;
+}
+
+.profile-card h3 {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--primary-light);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 6px;
+}
+
+.profile-field {
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile-field strong {
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+/* Tags de Habilidades */
+.skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 4px 0;
+}
+
+.tag {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+.tag.tech {
+    background: rgba(138, 43, 226, 0.15);
+    border-color: rgba(138, 43, 226, 0.3);
+    color: #dfbfff;
+}
+
+.tag.remote {
+    background: rgba(0, 229, 255, 0.15);
+    border-color: rgba(0, 229, 255, 0.3);
+    color: #bbf8ff;
+}
+
+.profile-card .bio {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    font-style: italic;
+    background: rgba(0, 0, 0, 0.15);
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+/* Vetor do Candidato */
+.vector-display {
+    background: #080611;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 11px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.vector-display strong {
+    color: var(--text-secondary);
+}
+
+.vector-display code {
+    color: var(--info);
+    font-family: monospace;
+    word-break: break-all;
+    font-size: 12px;
+}
+
+/* Seção de Matches */
+.matches-list-section {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow: hidden;
+}
+
+.matches-list-section h2 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.matches-list-section h2 span {
+    color: var(--primary-light);
+}
+
+.matches-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-right: 4px;
+}
+
+.matches-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.matches-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.no-matches {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-top: 20px;
+    line-height: 1.4;
+}
+
+/* Card Individual de Match Salvo */
+.match-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    background: rgba(255, 255, 255, 0.02);
+    transition: all 0.2s ease;
+    animation: slideIn 0.3s ease-out;
+}
+
+.match-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--primary-light);
+}
+
+.match-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.match-title {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.match-company {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.match-badge {
+    background: var(--success-bg);
+    color: var(--success);
+    font-size: 12px;
+    font-weight: 800;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 255, 135, 0.2);
+}
+
+/* Área Principal de Conteúdo */
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Header Principal */
+.main-header {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    background: rgba(0, 255, 135, 0.05);
+    padding: 6px 14px;
+    border-radius: 30px;
+    border: 1px solid rgba(0, 255, 135, 0.1);
+}
+
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--success);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--success);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(0, 255, 135, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 8px rgba(0, 255, 135, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(0, 255, 135, 0);
+    }
+}
+
+.btn-init-db {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.btn-init-db:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--primary-light);
+    color: var(--primary-light);
+}
+
+/* Área do Dashboard / Tabela de Vagas */
+.dashboard-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    height: calc(100vh - 160px);
+    overflow: hidden;
+}
+
+.table-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.jobs-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.jobs-table th {
+    text-align: left;
+    padding: 18px 24px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+    font-weight: 700;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(13, 9, 28, 0.6);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+}
+
+.jobs-table td {
+    padding: 16px 24px;
+    vertical-align: middle;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    color: var(--text-primary);
+}
+
+.jobs-table tbody tr {
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.jobs-table tbody tr:hover {
+    background: rgba(138, 43, 226, 0.08);
+    box-shadow: inset 4px 0 0 var(--primary-light);
+}
+
+/* Elementos internos da tabela */
+.table-match-badge {
+    background: linear-gradient(135deg, var(--primary-light), var(--info));
+    padding: 6px 12px;
+    border-radius: 30px;
+    font-weight: 800;
+    font-size: 13px;
+    text-align: center;
+    color: #fff;
+    display: inline-block;
+    box-shadow: 0 2px 10px rgba(138, 43, 226, 0.25);
+}
+
+.table-job-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 4px;
+}
+
+.table-company-name {
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.table-placeholder {
+    text-align: center !important;
+    padding: 100px 40px !important;
+    color: var(--text-secondary);
+}
+
+.table-placeholder i {
+    font-size: 48px;
+    color: var(--primary-light);
+    margin-bottom: 16px;
+    display: block;
+}
+
+.table-placeholder p {
+    font-size: 16px;
+    margin-top: 8px;
+}
+
+/* Animações de Swipe */
+.swipe-left {
+    transform: translate(-150%, -10px) rotate(-20deg) !important;
+    opacity: 0;
+}
+
+.swipe-right {
+    transform: translate(150%, -10px) rotate(20deg) !important;
+    opacity: 0;
+}
+
+/* Rodapé Tecnológico */
+.tech-info {
+    height: 70px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 40px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.info-item i {
+    font-size: 20px;
+    color: var(--primary-light);
+}
+
+.info-item div {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-item strong {
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-item span {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Animações de FadeIn e SlideIn */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Indicador de Arrastar */
+.drag-indicator {
+    font-size: 15px;
+    color: #e0dcf5;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(138, 43, 226, 0.12);
+    /* Leve toque do lilás do tema */
+    padding: 10px 24px;
+    border-radius: 30px;
+    border: 1px solid rgba(138, 43, 226, 0.35);
+    margin-top: 14px;
+    box-shadow: 0 4px 15px rgba(138, 43, 226, 0.15);
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes pulse-horizontal {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+}
+
+.animate-pulse {
+    animation: pulse-horizontal 1.5s infinite ease-in-out;
+}
+
+/* Alinhamento do Header Esquerdo */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Botões do Header (Retreinar e Visor) */
+.btn-retrain,
+.btn-visor {
+    background: rgba(138, 43, 226, 0.15);
+    border: 1px solid rgba(138, 43, 226, 0.35);
+    color: #e0dcf5;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-retrain:hover:not(:disabled),
+.btn-visor:hover {
+    background: var(--primary-light);
+    border-color: var(--primary-light);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(138, 43, 226, 0.4);
+}
+
+.btn-retrain:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.08);
+    color: var(--text-secondary);
+    box-shadow: none;
+}

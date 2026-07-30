@@ -1,0 +1,92 @@
+[
+    {
+        "id": "cand_01",
+        "name": "Lucas Silva (Dev Frontend Junior)",
+        "skills": [
+            "React",
+            "CSS",
+            "Javascript"
+        ],
+        "experience_years": 1,
+        "target_salary": 4500,
+        "remote_pref": "Remoto",
+        "bio": "Desenvolvedor frontend apaixonado por React e interfaces modernas. Busco minha primeira ou segunda oportunidade no mercado como desenvolvedor junior, preferencialmente remoto."
+    },
+    {
+        "id": "cand_02",
+        "name": "Mariana Santos (Dev Backend Node.js Senior)",
+        "skills": [
+            "Node.js",
+            "Javascript",
+            "PostgreSQL"
+        ],
+        "experience_years": 7,
+        "target_salary": 15000,
+        "remote_pref": "Híbrido",
+        "bio": "Engenheira de software senior com foco em backend em Node.js e bancos relacionais. Longa experiência projetando microsserviços seguros e escaláveis. Disponível para atuação híbrida."
+    },
+    {
+        "id": "cand_03",
+        "name": "Gabriel Souza (Dev Mobile Flutter Pleno)",
+        "skills": [
+            "Flutter",
+            "Dart",
+            "Mobile"
+        ],
+        "experience_years": 3,
+        "target_salary": 10000,
+        "remote_pref": "Remoto",
+        "bio": "Desenvolvedor Flutter focado em apps Android/iOS fluidos. Tenho forte domínio de UI responsiva, integrações de APIs REST e arquitetura limpa em projetos mobile."
+    },
+    {
+        "id": "cand_04",
+        "name": "Juliana Lima (Dev Frontend Pleno)",
+        "skills": [
+            "React",
+            "Javascript",
+            "CSS"
+        ],
+        "experience_years": 4,
+        "target_salary": 9200,
+        "remote_pref": "Remoto",
+        "bio": "Atuo como desenvolvedora frontend React há 4 anos. Foco em interfaces pixel-perfect, acessibilidade web e performance de aplicações web SPA."
+    },
+    {
+        "id": "cand_05",
+        "name": "Rodrigo Alves (Dev Backend Junior)",
+        "skills": [
+            "Node.js",
+            "Javascript"
+        ],
+        "experience_years": 1,
+        "target_salary": 4500,
+        "remote_pref": "Presencial",
+        "bio": "Iniciando minha jornada no backend com Node.js e Express. Tenho projetos de estudo com REST APIs e bancos MongoDB. Busco vagas presenciais na região de São Paulo."
+    },
+    {
+        "id": "cand_06",
+        "name": "Ana Clara (Estagiária Web)",
+        "skills": [
+            "React",
+            "CSS",
+            "Javascript"
+        ],
+        "experience_years": 0,
+        "target_salary": 2000,
+        "remote_pref": "Híbrido",
+        "bio": "Estudante de Engenharia de Software. Estudando Javascript e React por fora, com forte dedicação a aprender as melhores práticas de desenvolvimento frontend."
+    },
+    {
+        "id": "cand_07",
+        "name": "Victor Mendes (Dev Mobile Senior)",
+        "skills": [
+            "Flutter",
+            "Dart",
+            "Mobile"
+        ],
+        "experience_years": 8,
+        "target_salary": 17000,
+        "remote_pref": "Híbrido",
+        "bio": "Desenvolvedor mobile senior com foco em Flutter, Dart e arquitetura de aplicativos móveis complexos e de larga escala."
+    }
+]

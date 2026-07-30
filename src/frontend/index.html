@@ -1,0 +1,139 @@
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevMatch - Tinder de Vagas com ChromaDB</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="glow-bg"></div>
+
+    <div class="app-container">
+        <!-- Barra Lateral (Candidatos e Matches) -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-fire-flame-curved logo-icon"></i>
+                <h1>Dev<span>Match</span></h1>
+            </div>
+
+            <div class="candidate-selector-section">
+                <label for="candidate-select"><i class="fa-solid fa-user-tie"></i> Selecionar Candidato:</label>
+                <div class="custom-select">
+                    <select id="candidate-select">
+                        <option value="" disabled selected>Carregando perfis...</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Perfil do Candidato Selecionado (View de Candidato) -->
+            <div class="profile-card glass" id="candidate-profile" style="display: none;">
+                <h3>Perfil Ativo</h3>
+                <div class="profile-field">
+                    <strong>Experiência:</strong> <span id="cand-exp">0 anos</span>
+                </div>
+                <div class="profile-field">
+                    <strong>Pretensão Salarial:</strong> <span id="cand-salary">R$ 0</span>
+                </div>
+                <div class="profile-field">
+                    <strong>Preferência:</strong> <span id="cand-remote" class="tag remote">Remoto</span>
+                </div>
+                <div class="skills-tags" id="cand-skills">
+                    <!-- Tecnologias dinâmicas -->
+                </div>
+                <p class="bio" id="cand-bio">Selecione um perfil para iniciar.</p>
+
+                <!-- Vetor de Entrada do Candidato (Didático) -->
+                <div class="vector-display">
+                    <strong>Vetor do Candidato [6D]:</strong>
+                    <code id="cand-vector">[0.0, 0.0, 0.0, 0.0, 0.0, 0.0]</code>
+                </div>
+            </div>
+
+        </aside>
+
+        <!-- Área Principal de Swipe (Vagas) -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-left">
+                    <div class="status-indicator">
+                        <span class="pulse-dot"></span>
+                        <span>ChromaDB local conectado</span>
+                    </div>
+                    <button class="btn-retrain" id="btn-retrain" disabled title="Retreinar Rede Neural com TensorFlow.js">
+                        <i class="fa-solid fa-brain"></i> Retreinar
+                    </button>
+                    <button class="btn-visor" id="btn-toggle-visor" style="display: none;" title="Mostrar/Ocultar gráficos do TensorFlow">
+                        <i class="fa-solid fa-chart-line"></i> Fechar Gráficos
+                    </button>
+                </div>
+                <button class="btn-init-db" id="btn-reinit-db" title="Reiniciar e recarregar dados no ChromaDB">
+                    <i class="fa-solid fa-arrows-rotate"></i> Resetar Banco Vetorial
+                </button>
+            </header>
+
+            <div class="dashboard-area">
+                <div class="table-container glass">
+                    <table class="jobs-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 15%;">Match IA</th>
+                                <th style="width: 35%;">Vaga & Empresa</th>
+                                <th style="width: 25%;">Tecnologias</th>
+                                <th style="width: 12%;">Salário</th>
+                                <th style="width: 13%;">Exp. Requerida</th>
+                            </tr>
+                        </thead>
+                        <tbody id="jobs-table-body">
+                            <tr>
+                                <td colspan="5" class="table-placeholder">
+                                    <i class="fa-solid fa-user-check load-icon"></i>
+                                    <p>Escolha um candidato na barra lateral para carregar as vagas recomendadas.</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Rodapé Técnico informativo -->
+            <footer class="tech-info glass">
+                <div class="info-item">
+                    <i class="fa-solid fa-circle-nodes"></i>
+                    <div>
+                        <strong>Métrica Vetorial</strong>
+                        <span>Similaridade de Cosseno (ChromaDB)</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fa-solid fa-gauge-high"></i>
+                    <div>
+                        <strong>Tempo de Resposta</strong>
+                        <span id="query-time">&lt; 5ms</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fa-solid fa-database"></i>
+                    <div>
+                        <strong>Banco Vetorial</strong>
+                        <span>ChromaDB Local (API)</span>
+                    </div>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <!-- TensorFlow Visor para Gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@1.5.1/dist/tfjs-vis.umd.min.js"></script>
+    <!-- Script modular de Entrada -->
+    <script src="index.js" type="module"></script>
+</body>
+
+</html>
